@@ -9,13 +9,13 @@ Edit the environment file .env to configure the `SUBSCRIPTION_ID`, `RINKEBY_URL`
 Then edit the `hardhat.config.ts` file so that the network is pointed to the Rinkeby network:
 
 ```
-  networks: {
-    rinkeby: {
-      url: process.env.RINKEBY_URL || '',
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
+networks: {
+  rinkeby: {
+    url: process.env.RINKEBY_URL || '',
+    accounts:
+      process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
   },
+},
 ```
 
 Then deploy the contract.
@@ -37,10 +37,10 @@ Also make sure your account have sufficient LINK. Click "Add Funds" and key in "
 Now you can run the test using the smart contract (address) you just deployed. To test, first edit the `test/vrfconsumer-test.ts` file:
 
 ```
-    const VRFv2Consumer = await ethers.getContractFactory('VRFv2Consumer');
-    smartContractInstance = VRFv2Consumer.attach(
-      '0xF10B109FF...DED45DDdd3', // your contract address
-    );
+const VRFv2Consumer = await ethers.getContractFactory('VRFv2Consumer');
+smartContractInstance = VRFv2Consumer.attach(
+    '0xF10B109FF...DED45DDdd3', // your contract address
+);
 ```
 
 If you receive the following error:
