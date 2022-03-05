@@ -23,11 +23,13 @@ async function main() {
     return;
   }
   console.log(`Chainlink subscription id ${subscriptionId}`);
-  const VFRv2Consumer = await ethers.getContractFactory('VRFv2Consumer');
-  const contractInstance = await VFRv2Consumer.deploy(subscriptionId);
+  const RangeVFRv2Consumer = await ethers.getContractFactory(
+    'RangeVRFv2Consumer',
+  );
+  const contractInstance = await RangeVFRv2Consumer.deploy(subscriptionId);
   await contractInstance.deployed();
   console.log(
-    'Successfully VRFv2Consumer deployed to:',
+    'Successfully RangeVRFv2Consumer deployed to:',
     contractInstance.address,
   );
 }

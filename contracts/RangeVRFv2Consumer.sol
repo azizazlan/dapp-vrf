@@ -6,7 +6,7 @@ import '@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol';
 import '@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol';
 import '@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol';
 
-contract VRFv2Consumer is VRFConsumerBaseV2 {
+contract RangeVRFv2Consumer is VRFConsumerBaseV2 {
   VRFCoordinatorV2Interface COORDINATOR;
   LinkTokenInterface LINKTOKEN;
 
@@ -40,9 +40,9 @@ contract VRFv2Consumer is VRFConsumerBaseV2 {
 
   // For this example, retrieve 2 random values in one request.
   // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
-  uint32 numWords = 2;
+  uint32 numWords = 1;
 
-  uint256[] public s_randomWords;
+  uint256 public s_randomWord;
 
   uint256 public s_requestId;
   address s_owner;
@@ -70,7 +70,7 @@ contract VRFv2Consumer is VRFConsumerBaseV2 {
     uint256, /* requestId */
     uint256[] memory randomWords
   ) internal override {
-    s_randomWords = randomWords;
+    s_randomWord = (randomWords[0] % 50) + 1;
   }
 
   modifier onlyOwner() {
