@@ -4,9 +4,11 @@ This project was inspired after reading Chainlink's verifiable random function o
 
 ## Prerequisite
 
-Edit the environment file .env to configure the `SUBSCRIPTION_ID`, `RINKEBY_URL` and `PRIVATE_KEY`
+1. Connect Chainlink [VRF](https://vrf.chain.link/) page to your metamask wallet (chrome extension).
 
-Then edit the `hardhat.config.ts` file so that the network is pointed to the Rinkeby network:
+2. Edit the environment file .env to configure the `SUBSCRIPTION_ID`, `RINKEBY_URL` and `PRIVATE_KEY`
+
+3. Then edit the `hardhat.config.ts` file so that the network is pointed to the Rinkeby network:
 
 ```
 networks: {
@@ -17,6 +19,26 @@ networks: {
   },
 },
 ```
+
+## Usage
+
+1. Clone this repo, change into the locally cloned directory and run `npm install`
+2. Create the .env file with the following contents:
+
+   ```
+   SUBSCRIPTION_ID=<refer_subscription_page>
+   RINKEBY_URL=https://eth-rinkeby.alchemyapi.io/v2/<appId>
+   PRIVATE_KEY=86...
+   VITE_RANGEVRFV2CONSUMER=0x...
+   ```
+
+   where `VITE_RANGEVRFV2CONSUMER` is the smart contract address which can be obtained once it is deployed in Step 1 of Test 2 below.
+
+3. Then run:
+
+   ```
+   npm run dev
+   ```
 
 ## Test 1
 
