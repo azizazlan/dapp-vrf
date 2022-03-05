@@ -1,6 +1,6 @@
 # Dapp-VRF
 
-This project was inspired after reading Chainlink's verifiable random function (or "VRF") [here] (https://docs.chain.link/docs/get-a-random-number/#create-and-deploy-a-vrf-v2-compatible-contract)
+This project was inspired after reading Chainlink's verifiable random function or "VRF" [here](https://docs.chain.link/docs/get-a-random-number/#create-and-deploy-a-vrf-v2-compatible-contract)
 
 ## Prerequisite
 
