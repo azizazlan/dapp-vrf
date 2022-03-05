@@ -3,7 +3,10 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
+import * as dotenv from 'dotenv';
+import { ethers } from 'hardhat';
+
+dotenv.config();
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -14,12 +17,16 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
-
-  await greeter.deployed();
-
-  console.log("Greeter deployed to:", greeter.address);
+  const subscriptionId = process.env.SUBSCRIPTION_ID; // Get this value from Chainlink Subscription Manager page
+  if (!subscriptionId) {
+    console.log('Could not deploy smart contract because no subscription id');
+    return;
+  }
+  console.log(`Subscription id ${subscriptionId}`);
+  const VFRv2Consumer = await ethers.getContractFactory('VRFv2Consumer');
+  const contractInstance = await VFRv2Consumer.deploy(subscriptionId);
+  await contractInstance.deployed();
+  console.log('VRFv2Consumer deployed to:', contractInstance.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
