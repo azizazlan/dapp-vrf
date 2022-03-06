@@ -1,18 +1,27 @@
 import { ethers } from 'ethers';
 import { all, put, takeLatest } from 'redux-saga/effects';
 import { FETCH_VRF_REQUEST } from './actionTypes';
-import { Vrf } from './types';
-import { fetchVrfSuccess } from './actions';
+import { fetchVrfSuccess, fetchVrfFailure } from './actions';
 import RangeVRFv2Consumer from '../artifacts/contracts/RangeVRFv2Consumer.sol/RangeVRFv2Consumer.json';
 
 function* fetchVrfSaga(): any {
-  const { ethereum } = window;
-  window.ethereum.enable();
-  if (!ethereum) {
-    alert('Please install MetaMask!');
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const accounts = yield provider.send('eth_requestAccounts', []);
+
+  if (accounts.length === 0) {
+    console.log('no account!');
     return;
   }
-  const provider = new ethers.providers.Web3Provider(ethereum);
+
+  const network = yield provider.getNetwork();
+  if (network.chainId !== 4) {
+    yield put(
+      fetchVrfFailure({
+        error: 'VRF test only available on the Rinkeby Test Network',
+      }),
+    );
+    return;
+  }
 
   const signer = provider.getSigner();
   const contractAddress = `${import.meta.env.VITE_RANGEVRFV2CONSUMER}`;

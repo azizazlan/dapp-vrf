@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import React from 'react';
 
-const ONBOARD_TEXT = 'Click here to install MetaMask!';
+const ONBOARD_TEXT = 'Install MetaMask!';
 const CONNECT_TEXT = 'Connect';
 const CONNECTED_TEXT = 'Connected';
 
@@ -58,6 +58,7 @@ export function OnboardingButton() {
       onboarding.current.startOnboarding();
     }
   };
+
   return (
     <Button variant="contained" disabled={isDisabled} onClick={onClick}>
       {buttonText}
