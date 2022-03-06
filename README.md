@@ -3,7 +3,9 @@
 This project was inspired after reading Chainlink's verifiable random function or "VRF" [here](https://docs.chain.link/docs/get-a-random-number/#create-and-deploy-a-vrf-v2-compatible-contract). This app generate random number between 1 and 50.
 
 <p align="center">
-![Screenshot 2022-03-06 at 4 00 34 PM](https://user-images.githubusercontent.com/732071/156914580-b13b9fa3-45f5-42f1-8ae8-9fa80e4ab046.png)
+<img src='https://user-images.githubusercontent.com/732071/156914580-b13b9fa3-45f5-42f1-8ae8-9fa80e4ab046.png' 
+    width="300"
+        height="300" />
 </p>
 
 ## Prerequisite
